@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+class Distance {
+    int meters, centimeters;
+
+public:
+    Distance(int m = 0, int cm = 0) {
+        meters = m;
+        centimeters = cm;
+    }
+
+    Distance operator+(Distance d) {
+        Distance temp;
+        temp.meters = meters + d.meters;
+        temp.centimeters = centimeters + d.centimeters;
+
+        if (temp.centimeters >= 100) {
+            temp.meters++;
+            temp.centimeters -= 100;
+        }
+        return temp;
+    }
+
+    void display() {
+        cout << meters << " m "
+             << centimeters << " cm\n";
+    }
+};
+
+int main() {
+    Distance d1(5, 60), d2(3, 80);
+
+    Distance d3 = d1 + d2;
+
+    d3.display();
+    return 0;
+}
